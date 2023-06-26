@@ -1,20 +1,15 @@
 import { Box, UnorderedList, ListItem, Flex, Text } from "@chakra-ui/react";
 import { CardContact } from "../../components/CardContact";
 import { Header } from "../../components/Header";
-import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { api } from "../../services/api";
 import { ContactContext } from "../../providers/ContactContext";
 import { ModalUpdateContact } from "../../components/ModalUpdateContact";
 import { ModalUpdateUser } from "../../components/ModalUpdateUser";
 import { ModalCreateContact } from "../../components/ModalCreateContact";
-import { UserContext } from "../../providers/UserContext";
 import { CardUser } from "../../components/CardUser";
 
 const HomePage = () => {
-  const token = localStorage.getItem("@TOKEN");
-  const navigate = useNavigate();
-
   const {
     contacts,
     setContacts,
@@ -22,7 +17,9 @@ const HomePage = () => {
     isOpenModalCreateContact,
     contactDeleted,
   } = useContext(ContactContext);
-  const { user } = useContext(UserContext);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token");
 
   const contactsExists = contacts.length > 0;
 
@@ -40,12 +37,6 @@ const HomePage = () => {
       }
     })();
   }, [isOpenModalUpdateContact, isOpenModalCreateContact, contactDeleted]);
-
-  useEffect(() => {
-    if (user.length == 0) {
-      navigate("/login");
-    }
-  }, []);
 
   return (
     <>

@@ -50,7 +50,7 @@ const ModalCreateContact = () => {
       <ModalOverlay />
       <ModalContent
         backgroundColor={"white.50"}
-        h={"500px"}
+        h={"950px"}
         borderRadius={"5px"}
         marginInline={"30px"}
         justify={"space-between"}
@@ -81,7 +81,7 @@ const ModalCreateContact = () => {
                   Email
                 </FormLabel>
                 <Input
-                  placeholder="Digite seu email..."
+                  placeholder="Digite o email..."
                   h={"30px"}
                   backgroundColor={"green.50"}
                   color={"green.100"}
@@ -93,7 +93,7 @@ const ModalCreateContact = () => {
                   {errors.email?.message}
                 </FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={errors.phoneNumber ? true : false}>
+              <FormControl isInvalid={errors.phone_number ? true : false}>
                 <FormLabel
                   fontSize={"xl"}
                   fontWeight={"extrabold"}
@@ -102,16 +102,16 @@ const ModalCreateContact = () => {
                   Telefone
                 </FormLabel>
                 <Input
-                  placeholder="Digite sua senha..."
+                  placeholder="Digite o telefone..."
                   h={"30px"}
                   backgroundColor={"green.50"}
                   color={"green.100"}
                   fontSize={"xl"}
                   fontWeight={"medium"}
-                  {...register("phoneNumber")}
+                  {...register("phone_number")}
                 />
                 <FormErrorMessage fontSize={"lg"}>
-                  {errors.phoneNumber?.message}
+                  {errors.phone_number?.message}
                 </FormErrorMessage>
               </FormControl>
               <FormControl isInvalid={errors.name ? true : false}>
@@ -123,7 +123,7 @@ const ModalCreateContact = () => {
                   Nome
                 </FormLabel>
                 <Input
-                  placeholder="Digite sua senha..."
+                  placeholder="Digite o nome..."
                   h={"30px"}
                   backgroundColor={"green.50"}
                   color={"green.100"}
@@ -133,6 +133,90 @@ const ModalCreateContact = () => {
                 />
                 <FormErrorMessage fontSize={"lg"}>
                   {errors.name?.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={errors.street ? true : false}>
+                <FormLabel
+                  fontSize={"xl"}
+                  fontWeight={"extrabold"}
+                  color={"green.200"}
+                >
+                  Rua
+                </FormLabel>
+                <Input
+                  placeholder="Digite a rua..."
+                  h={"30px"}
+                  backgroundColor={"green.50"}
+                  color={"green.100"}
+                  fontSize={"xl"}
+                  fontWeight={"medium"}
+                  {...register("street")}
+                />
+                <FormErrorMessage fontSize={"lg"}>
+                  {errors.street?.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={errors.number ? true : false}>
+                <FormLabel
+                  fontSize={"xl"}
+                  fontWeight={"extrabold"}
+                  color={"green.200"}
+                >
+                  Número
+                </FormLabel>
+                <Input
+                  placeholder="Digite o número..."
+                  h={"30px"}
+                  backgroundColor={"green.50"}
+                  color={"green.100"}
+                  fontSize={"xl"}
+                  fontWeight={"medium"}
+                  {...register("number")}
+                />
+                <FormErrorMessage fontSize={"lg"}>
+                  {errors.number?.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={errors.city ? true : false}>
+                <FormLabel
+                  fontSize={"xl"}
+                  fontWeight={"extrabold"}
+                  color={"green.200"}
+                >
+                  Cidade
+                </FormLabel>
+                <Input
+                  placeholder="Digite a cidade..."
+                  h={"30px"}
+                  backgroundColor={"green.50"}
+                  color={"green.100"}
+                  fontSize={"xl"}
+                  fontWeight={"medium"}
+                  {...register("city")}
+                />
+                <FormErrorMessage fontSize={"lg"}>
+                  {errors.city?.message}
+                </FormErrorMessage>
+              </FormControl>
+              <FormControl isInvalid={errors.state ? true : false}>
+                <FormLabel
+                  fontSize={"xl"}
+                  fontWeight={"extrabold"}
+                  color={"green.200"}
+                >
+                  Estado
+                </FormLabel>
+                <Input
+                  placeholder="Digite o estado..."
+                  h={"30px"}
+                  backgroundColor={"green.50"}
+                  color={"green.100"}
+                  fontSize={"xl"}
+                  fontWeight={"medium"}
+                  {...register("state")}
+                />
+                <FormErrorMessage fontSize={"lg"}>
+                  {errors.state?.message}
                 </FormErrorMessage>
               </FormControl>
               <Button

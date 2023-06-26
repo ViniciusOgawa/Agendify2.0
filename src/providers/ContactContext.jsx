@@ -11,7 +11,8 @@ export const ContactProvider = ({ children }) => {
   const toast = useToast();
 
   const deleteContact = async (contact) => {
-    const token = localStorage.getItem("@TOKEN");
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
     try {
       await api.delete(`/contacts/${contact.id}`, {
@@ -44,7 +45,8 @@ export const ContactProvider = ({ children }) => {
     useState(false);
 
   const updateContact = async (contactData) => {
-    const token = localStorage.getItem("@TOKEN");
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
     for (const key in contactData) {
       if (key in contactData && contactData[key] === "") {
@@ -86,7 +88,8 @@ export const ContactProvider = ({ children }) => {
     useState(false);
 
   const createContact = async (contactData) => {
-    const token = localStorage.getItem("@TOKEN");
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
     try {
       setLoadingCreateContact(true);

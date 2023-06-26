@@ -1,14 +1,11 @@
-import { RoutesMain } from "./routes"
+import { RoutesMain } from "./routes";
 
 const App = () => {
-
   return (
     <>
       <RoutesMain />
     </>
-  )
-}
+  );
+};
 
-export { App }
-
-
+export { App };

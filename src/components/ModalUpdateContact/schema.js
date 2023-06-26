@@ -4,7 +4,7 @@ export const updateContactSchema = yup.object().shape({
   name: yup.string().nullable().notRequired().label("Nome"),
   phoneNumber: yup
     .string()
-    .test("phoneNumber", "Número de telefone inválido", function (value) {
+    .test("phone_number", "Número de telefone inválido", function (value) {
       const { createError, path, parent } = this;
 
       if (parent.phoneNumber && parent.phoneNumber.trim() !== "") {
@@ -20,4 +20,8 @@ export const updateContactSchema = yup.object().shape({
     .nullable()
     .notRequired()
     .email("O email digitado é inválido"),
+  street: yup.string().nullable().notRequired(),
+  city: yup.string().nullable().notRequired(),
+  number: yup.string().nullable().notRequired(),
+  state: yup.string().nullable().notRequired(),
 });

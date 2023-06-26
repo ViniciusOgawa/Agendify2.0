@@ -1,81 +1,40 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { useToast } from "@chakra-ui/react";
 
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const navigate = useNavigate();
   const [user, setUser] = useState([]);
   const toast = useToast();
   const [isOpenModalUser, setIsOpenModalUser] = useState(false);
 
-  const [loadingLogin, setLoadingLogin] = useState(false);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
-  const userLogin = async (formData) => {
-    try {
-      setLoadingLogin(true);
-      const response = await api.post("/login", formData);
-      window.localStorage.clear();
-      window.localStorage.setItem("@TOKEN", response.data.token);
-      window.localStorage.setItem("@USERID", response.data.user.id);
-      toast({
-        title: "Login efetuado com sucesso!",
-        position: "top-right",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      navigate("/");
-      setUser(response.data.user);
-    } catch (error) {
-      toast({
-        title: "Senha ou email incorretos!",
-        position: "top-right",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-      console.log(error);
-    } finally {
-      setLoadingLogin(false);
-    }
-  };
-
-  const [loadingRegister, setLoadingRegister] = useState(false);
-
-  const userRegister = async (formData) => {
-    try {
-      setLoadingRegister(true);
-      await api.post("/users", formData);
-      toast({
-        title: "Cadastro efetuado com sucesso!",
-        position: "top-right",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-      navigate("/login");
-    } catch (error) {
-      toast({
-        title: "Email já cadastrado!",
-        position: "top-right",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-      console.log(error);
-    } finally {
-      setLoadingRegister(false);
-    }
-  };
+    (async () => {
+      if (token) {
+        try {
+          const response = await api.get("/users/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setUser(response.data);
+        } catch (err) {
+          window.localStorage.clear();
+        }
+      }
+    })();
+  }, []);
 
   const [loadingAttUser, setLoadingAttUser] = useState(false);
 
   const updateContact = async (userData) => {
-    const token = localStorage.getItem("@TOKEN");
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
 
     for (const key in userData) {
       if (key in userData && userData[key] === "") {
@@ -113,32 +72,9 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("@TOKEN");
-    (async () => {
-      if (token) {
-        try {
-          const response = await api.get("/users/profile", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          navigate("/");
-          setUser(response.data);
-        } catch (err) {
-          window.localStorage.clear();
-        }
-      }
-    })();
-  }, []);
-
   return (
     <UserContext.Provider
       value={{
-        userLogin,
-        loadingLogin,
-        userRegister,
-        loadingRegister,
         user,
         setUser,
         isOpenModalUser,

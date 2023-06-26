@@ -48,7 +48,7 @@ const CardUser = () => {
               width={"20px"}
             ></Box>
             <Text fontSize={"xs"} fontWeight={"medium"}>
-              {user.phoneNumber}
+              {user.phone_number}
             </Text>
           </Flex>
         </Flex>
