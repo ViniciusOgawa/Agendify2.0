@@ -1,4 +1,4 @@
-import { Box, Flex, Img, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Img, Text } from "@chakra-ui/react";
 import imgContact from "../../img/contact.png";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
@@ -19,7 +19,7 @@ const CardUser = () => {
       flexDirection={{ base: "column", md: "row" }}
       border={"1px solid"}
       borderColor={"green.100"}
-      marginTop={{ base: "250px", md: "200px" }}
+      marginTop={{ base: "250px", md: "-20px" }}
       padding={"10px"}
     >
       <Img
