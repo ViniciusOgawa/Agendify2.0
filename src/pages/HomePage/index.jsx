@@ -10,6 +10,7 @@ import { ModalCreateContact } from "../../components/ModalCreateContact";
 import { CardUser } from "../../components/CardUser";
 import { SearchBar } from "../../components/SearchBar";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../../components/Footer";
 
 const HomePage = () => {
   const {
@@ -109,6 +110,7 @@ const HomePage = () => {
           </UnorderedList>
         </Flex>
       </Box>
+      <Footer />
     </>
   );
 };
