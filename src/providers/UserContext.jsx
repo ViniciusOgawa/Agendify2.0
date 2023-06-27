@@ -72,6 +72,21 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const deleteUser = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+
+    try {
+      await api.delete(`/users/${user.id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -81,6 +96,7 @@ export const UserProvider = ({ children }) => {
         setIsOpenModalUser,
         loadingAttUser,
         updateContact,
+        deleteUser,
       }}
     >
       {children}

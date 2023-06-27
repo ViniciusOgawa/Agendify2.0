@@ -9,6 +9,7 @@ import { ModalUpdateUser } from "../../components/ModalUpdateUser";
 import { ModalCreateContact } from "../../components/ModalCreateContact";
 import { CardUser } from "../../components/CardUser";
 import { SearchBar } from "../../components/SearchBar";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const {
@@ -19,6 +20,8 @@ const HomePage = () => {
     contactDeleted,
     contactsFiltered,
   } = useContext(ContactContext);
+
+  const navigate = useNavigate();
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get("token");
@@ -36,6 +39,9 @@ const HomePage = () => {
         });
         setContacts(response.data);
       } catch (error) {
+        if (error.response.status == 401) {
+          navigate("/error");
+        }
         console.log(error);
       }
     })();

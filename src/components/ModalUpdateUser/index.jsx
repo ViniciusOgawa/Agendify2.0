@@ -19,8 +19,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
 const ModalUpdateUser = () => {
-  const { isOpenModalUser, setIsOpenModalUser, loadingAttUser, updateContact } =
-    useContext(UserContext);
+  const {
+    isOpenModalUser,
+    setIsOpenModalUser,
+    loadingAttUser,
+    updateContact,
+    deleteUser,
+  } = useContext(UserContext);
 
   const handleClose = () => {
     setIsOpenModalUser(false);
@@ -39,6 +44,11 @@ const ModalUpdateUser = () => {
   const submit = (data) => {
     updateContact(data);
     reset();
+  };
+
+  const deleteUserHandle = () => {
+    deleteUser();
+    window.location.href = "http://localhost:3000/template";
   };
 
   return (
@@ -168,6 +178,18 @@ const ModalUpdateUser = () => {
               </Button>
             </Box>
           </form>
+          <Button
+            h={"30px"}
+            fontSize={"xl"}
+            backgroundColor={"red.300"}
+            color={"green.200"}
+            border={"1px solid"}
+            borderColor={"green.200"}
+            marginTop={"10px"}
+            onClick={() => deleteUserHandle()}
+          >
+            Excluir
+          </Button>
         </ModalBody>
       </ModalContent>
     </Modal>
