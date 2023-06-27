@@ -17,25 +17,17 @@ import {
 import imgHeader from "../../img/header.png";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../providers/UserContext";
-import { useNavigate } from "react-router-dom";
 import { ContactContext } from "../../providers/ContactContext";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isLargerScreen] = useMediaQuery("(min-width: 768px)");
-  const url = window.location.href.substring(
-    window.location.href.lastIndexOf("/") + 1
-  );
-  const isLoginPage = url !== "login";
-  const isRegisterPage = url !== "register";
-  const navigate = useNavigate();
 
   const { setIsOpenModalUser, setUser } = useContext(UserContext);
   const { setIsOpenModalCreateContact } = useContext(ContactContext);
 
   const logout = () => {
-    localStorage.clear();
-    navigate("/login");
+    window.location.href = "http://localhost:3000/template";
     setUser([]);
   };
 
@@ -72,40 +64,31 @@ const Header = () => {
         <Text fontWeight={"bold"} fontSize={"2xl"}>
           Agendify
         </Text>
-        {isLoginPage + isRegisterPage != 1 && (
-          <>
-            {isMobile ? (
-              <Menu>
-                <MenuButton as={Button} backgroundColor={"transparent"}>
-                  <HamburgerIcon />
-                </MenuButton>
-                <MenuList>
-                  <MenuItem onClick={() => logout()}>Logout</MenuItem>
-                  <MenuItem onClick={handleOpenUser}>
-                    Atualizar informações
-                  </MenuItem>
-                  <MenuItem onClick={handleOpenContact}>
-                    Adicionar contato
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            ) : (
-              <Flex gap="10px">
-                <Button
-                  backgroundColor="transparent"
-                  onClick={handleOpenContact}
-                >
-                  <AddIcon />
-                </Button>
-                <Button backgroundColor="transparent" onClick={handleOpenUser}>
-                  <EditIcon />
-                </Button>
-                <Button backgroundColor="transparent" onClick={() => logout()}>
-                  <ArrowForwardIcon />
-                </Button>
-              </Flex>
-            )}
-          </>
+        {isMobile ? (
+          <Menu>
+            <MenuButton as={Button} backgroundColor={"transparent"}>
+              <HamburgerIcon />
+            </MenuButton>
+            <MenuList>
+              <MenuItem onClick={() => logout()}>Logout</MenuItem>
+              <MenuItem onClick={handleOpenUser}>
+                Atualizar informações
+              </MenuItem>
+              <MenuItem onClick={handleOpenContact}>Adicionar contato</MenuItem>
+            </MenuList>
+          </Menu>
+        ) : (
+          <Flex gap="10px">
+            <Button backgroundColor="transparent" onClick={handleOpenContact}>
+              <AddIcon />
+            </Button>
+            <Button backgroundColor="transparent" onClick={handleOpenUser}>
+              <EditIcon />
+            </Button>
+            <Button backgroundColor="transparent" onClick={() => logout()}>
+              <ArrowForwardIcon />
+            </Button>
+          </Flex>
         )}
       </Flex>
     </Flex>

@@ -19,7 +19,7 @@ const CardUser = () => {
       flexDirection={{ base: "column", md: "row" }}
       border={"1px solid"}
       borderColor={"green.100"}
-      marginTop={{ base: "250px", md: "-20px" }}
+      marginTop={{ base: "250px", md: "200px" }}
       padding={"10px"}
     >
       <Img

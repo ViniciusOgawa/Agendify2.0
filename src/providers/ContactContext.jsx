@@ -6,6 +6,7 @@ export const ContactContext = createContext({});
 
 export const ContactProvider = ({ children }) => {
   const [contacts, setContacts] = useState([]);
+  const [contactsFiltered, setContactsFiltered] = useState([]);
   const [contact, setContact] = useState({});
   const [contactDeleted, setContactDeleted] = useState(false);
   const toast = useToast();
@@ -139,6 +140,8 @@ export const ContactProvider = ({ children }) => {
         setIsOpenModalCreateContact,
         contactDeleted,
         setContactDeleted,
+        contactsFiltered,
+        setContactsFiltered,
       }}
     >
       {children}

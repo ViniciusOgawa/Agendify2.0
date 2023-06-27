@@ -8,6 +8,7 @@ import { ModalUpdateContact } from "../../components/ModalUpdateContact";
 import { ModalUpdateUser } from "../../components/ModalUpdateUser";
 import { ModalCreateContact } from "../../components/ModalCreateContact";
 import { CardUser } from "../../components/CardUser";
+import { SearchBar } from "../../components/SearchBar";
 
 const HomePage = () => {
   const {
@@ -16,12 +17,14 @@ const HomePage = () => {
     isOpenModalUpdateContact,
     isOpenModalCreateContact,
     contactDeleted,
+    contactsFiltered,
   } = useContext(ContactContext);
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get("token");
 
   const contactsExists = contacts.length > 0;
+  const contactsFilteredExists = contactsFiltered.length > 0;
 
   useEffect(() => {
     (async () => {
@@ -54,6 +57,7 @@ const HomePage = () => {
           marginBottom={"20px"}
         >
           <CardUser />
+          <SearchBar />
           <UnorderedList
             styleType="none"
             margin={"20px"}
@@ -61,7 +65,13 @@ const HomePage = () => {
             w={"90%"}
             maxWidth={"1200px"}
           >
-            {contactsExists ? (
+            {contactsFilteredExists ? (
+              contactsFiltered.map((element) => (
+                <ListItem marginTop="40px" w="100%" key={element.id}>
+                  <CardContact contact={element} />
+                </ListItem>
+              ))
+            ) : contactsExists ? (
               contacts.map((element) => (
                 <ListItem marginTop="40px" w="100%" key={element.id}>
                   <CardContact contact={element} />
