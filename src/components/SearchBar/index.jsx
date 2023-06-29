@@ -12,17 +12,18 @@ const SearchBar = () => {
     event.preventDefault();
 
     const filteredContacts = contacts.filter((element) => {
-      return element.name.toLowerCase().includes(searchTerm.toLowerCase());
+      return (
+        element.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        element.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        element.phone_number.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     });
 
     setContactsFiltered(filteredContacts);
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ backgroundcolor: "aqua", width: "1000px" }}
-    >
+    <form onSubmit={handleSubmit} style={{ width: "1200px" }}>
       <Flex
         backgroundColor={"white.50"}
         margin-inline={"none"}

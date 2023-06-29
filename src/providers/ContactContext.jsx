@@ -28,7 +28,7 @@ export const ContactProvider = ({ children }) => {
         duration: 5000,
         isClosable: true,
       });
-      setContactDeleted(true);
+      setContactDeleted(!contactDeleted);
     } catch (error) {
       toast({
         title: "Erro ao deletar contato!",

@@ -1,18 +1,14 @@
 import { Box, Flex, Img, Text, Button } from "@chakra-ui/react";
 import imgContact from "../../img/contact.png";
-import { EditIcon, PhoneIcon, DeleteIcon, InfoIcon } from "@chakra-ui/icons";
+import { EditIcon, PhoneIcon, DeleteIcon } from "@chakra-ui/icons";
 import { ContactContext } from "../../providers/ContactContext";
 import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 
 const CardContact = ({ contact }) => {
-  const {
-    setIsOpenModalUpdateContact,
-    setContact,
-    deleteContact,
-    setIsOpenModalAddressContact,
-  } = useContext(ContactContext);
+  const { setIsOpenModalUpdateContact, setContact, deleteContact } =
+    useContext(ContactContext);
 
   const handleOpenContact = () => {
     setIsOpenModalUpdateContact(true);
@@ -51,8 +47,7 @@ const CardContact = ({ contact }) => {
       <Flex
         backgroundColor={"white.50"}
         margin-inline={"none"}
-        w={"100%"}
-        maxWidth={"1200px"}
+        w={"1200px"}
         h={{ base: "330px", md: "150px" }}
         borderRadius={"5px"}
         boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px"}
