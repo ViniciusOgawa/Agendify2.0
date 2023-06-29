@@ -7,8 +7,12 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 
 const CardContact = ({ contact }) => {
-  const { setIsOpenModalUpdateContact, setContact, deleteContact } =
-    useContext(ContactContext);
+  const {
+    setIsOpenModalUpdateContact,
+    setContact,
+    deleteContact,
+    isOpenModalUpdateContact,
+  } = useContext(ContactContext);
 
   const handleOpenContact = () => {
     setIsOpenModalUpdateContact(true);
@@ -40,7 +44,7 @@ const CardContact = ({ contact }) => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [isOpenModalUpdateContact]);
 
   return (
     <>
