@@ -18,7 +18,7 @@ Página inicial: Após fazer login, os usuários são redirecionados para a pág
 
 ## Como executar o Projeto
 
-1. Para inciar este projeto, é necessário instalar a API disponivel nesse outro [projeto](https://github.com/ViniciusOgawa/Agendify-API). Depois disso, é necessário instalar as dependências, que serão utilizadas. Portanto utilize o comando abaixo para instalar tais dependências:
+1. Para inciar este projeto, é necessário instalar as dependências, que serão utilizadas. Portanto utilize o comando abaixo para instalar tais dependências:
 
 ```bash
 # caso use npm
@@ -28,17 +28,7 @@ npm install
 yarn
 ```
 
-2. Execute as migrações do banco de dados:
-
-```bash
-# caso use npm
-npm run migrate
-
-# caso use yarn
-yarn run migrate
-```
-
-3. Inicie a aplicação:
+2. Inicie a aplicação:
 
 ```bash
 # caso use npm
@@ -48,7 +38,10 @@ npm run dev
 yarn dev
 ```
 
-4. O serviço estará disponível em http://localhost:3000.
+3. Utilizando a aplicação:
+
+É necessário instalar a API disponivel nesse outro [projeto](https://github.com/ViniciusOgawa/Ciclo1-SiteApresentacao). Inicie a API e este projeto, após isso entre em http://localhost:3000/template,
+cadastre e efetue o login, após o login será redirecionado para esta aplicação.
 
 ## Bibliotecas utilizadas
 
